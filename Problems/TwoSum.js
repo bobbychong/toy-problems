@@ -1,12 +1,17 @@
 var twoSum = function (nums, target) {
   var results = [];
+  var obj = {};
   for (var i = 0; i < nums.length; i++) {
-    for (var j = i + 1; j < nums.length; j++) {
-      if (nums[i] + nums[j] === target) {
-        results.push(i);
-        results.push(j);
-        return results;
-      }
+    if (!obj[nums[i]]) {
+      obj[nums[i]] = i;
+    }
+  }
+
+  for (var j = 0; j < nums.length; j++) {
+    if (obj[target - nums[j]] && j !== obj[target - nums[j]]) {
+      results.push(j);
+      results.push(obj[target - nums[j]]);
+      return results;
     }
   }
 };
